@@ -2,12 +2,10 @@ import React from "react";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import Layout from "../layout";
-import UserInfo from "../components/UserInfo/UserInfo";
 import Disqus from "../components/Disqus/Disqus";
 import PostTags from "../components/PostTags/PostTags";
-import SocialLinks from "../components/SocialLinks/SocialLinks";
 import SEO from "../components/SEO/SEO";
-import Footer from "../components/Footer/Footer";
+import Author from '../components/Author/Author';
 import config from "../../data/SiteConfig";
 import "./b16-tomorrow-dark.css";
 import "./post.css";
@@ -31,14 +29,13 @@ export default class PostTemplate extends React.Component {
           <SEO postPath={slug} postNode={postNode} postSEO />
           <div>
             <h1>{post.title}</h1>
+            by 
+            <Author author={post.author} />
             <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
             <div className="post-meta">
               <PostTags tags={post.tags} />
-              <SocialLinks postPath={slug} postNode={postNode} />
             </div>
-            <UserInfo config={config} />
             <Disqus postNode={postNode} />
-            <Footer config={config} />
           </div>
         </div>
       </Layout>
@@ -59,6 +56,7 @@ export const pageQuery = graphql`
         date
         category
         tags
+        author
       }
       fields {
         slug

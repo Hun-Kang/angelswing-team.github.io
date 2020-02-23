@@ -1,5 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "gatsby";
+
+import Author from '../Author/Author';
+import './PostListing.css';
 
 class PostListing extends React.Component {
   getPostList() {
@@ -10,6 +13,7 @@ class PostListing extends React.Component {
         tags: postEdge.node.frontmatter.tags,
         cover: postEdge.node.frontmatter.cover,
         title: postEdge.node.frontmatter.title,
+        author: postEdge.node.frontmatter.author,
         date: postEdge.node.fields.date,
         excerpt: postEdge.node.excerpt,
         timeToRead: postEdge.node.timeToRead
@@ -23,10 +27,14 @@ class PostListing extends React.Component {
     return (
       <div>
         {/* Your post list here. */
-        postList.map(post => (
-          <Link to={post.path} key={post.title}>
-            <h1>{post.title}</h1>
-          </Link>
+        postList.map((post, idx) => (
+          <Fragment key={`postlist-${idx}`}>
+            <Link className='post-list' to={post.path} key={post.title}>
+              <h1>{post.title}</h1> 
+            </Link>
+            by 
+            <Author author={post.author} />
+          </Fragment>
         ))}
       </div>
     );

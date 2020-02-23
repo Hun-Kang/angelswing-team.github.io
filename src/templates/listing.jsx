@@ -45,7 +45,7 @@ class Listing extends React.Component {
             <SEO />
             <PostListing postEdges={postEdges} />
           </div>
-          {this.renderPaging()}
+          {/* {this.renderPaging()} */}
         </div>
       </Layout>
     );
@@ -75,6 +75,7 @@ export const listingQuery = graphql`
             tags
             cover
             date
+            author
           }
         }
       }

@@ -1,0 +1,15 @@
+.post-list {
+  text-decoration: none;
+  color: rgb(58, 58, 58);
+}
+
+.post-list h1:hover{
+  color: #4a74b4;
+}
+
+.post-list-author {
+  color: rgb(58, 58, 58);
+}
+.post-list-author:hover {
+  color: #4a74b4;
+}
